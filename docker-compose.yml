@@ -6,7 +6,7 @@ services:
     command: --init-file /docker-entrypoint-initdb.d/pdns-schema.sql
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_DATABASE=powerdnsadmin
+      - MYSQL_DATABASE=pdns
       - MYSQL_USER=pdns 
       - MYSQL_PASSWORD=da09c7c92024_
     ports:
@@ -19,7 +19,6 @@ services:
     #build: pdns
     image: pschiffe/pdns-mysql
     hostname: pdns
-    domainname: computingforgeeks.com
     restart: always
     depends_on:
       - db
@@ -33,7 +32,7 @@ services:
       - PDNS_gmysql_host=db
       - PDNS_gmysql_port=3306
       - PDNS_gmysql_user=pdns
-      - PDNS_gmysql_dbname=powerdnsadmin
+      - PDNS_gmysql_dbname=pdns
       - PDNS_gmysql_password=da09c7c92024_
       - PDNS_master=yes 
       - PDNS_api=yes
@@ -46,7 +45,7 @@ services:
       - PDNS_version_string=anonymous 
       - PDNS_default_ttl=1500 
       - PDNS_allow_notify_from=0.0.0.0 
-      - PDNS_allow_axfr_ips=91.233.252.72,88.99.231.114,88.99.231.120 
+      - PDNS_allow_axfr_ips=194.69.60.5 
 
   web_app:
     image: powerdnsadmin/pda-legacy:latest
@@ -64,7 +63,7 @@ services:
       options:
         max-size: 50m
     environment:
-      - SQLALCHEMY_DATABASE_URI=mysql://pdns:da09c7c92024_@db/powerdnsadmin
+      - SQLALCHEMY_DATABASE_URI=mysql://pdns:da09c7c92024_@db/pdns
       - GUNICORN_TIMEOUT=60
       - GUNICORN_WORKERS=2
       - GUNICORN_LOGLEVEL=DEBUG
