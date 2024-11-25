@@ -34,8 +34,10 @@ services:
       - PDNS_gmysql_user=pdns
       - PDNS_gmysql_dbname=pdns
       - PDNS_gmysql_password=da09c7c92024_
-      - PDNS_master=yes 
+      - PDNS_master=yes
+      - PDNS_slave=no 
       - PDNS_api=yes
+      - PDNS_disable-syslog = no
       - PDNS_api_key=a035bc96d3dc46ce80675
       - PDNSCONF_API_KEY=a035bc96d3dc46ce80675
       - PDNS_webserver=yes 
@@ -45,7 +47,7 @@ services:
       - PDNS_version_string=anonymous 
       - PDNS_default_ttl=1500 
       - PDNS_allow_notify_from=0.0.0.0 
-      - PDNS_allow_axfr_ips=194.69.60.5 
+      - PDNS_allow-axfr-ips=194.69.60.5 
 
   web_app:
     image: powerdnsadmin/pda-legacy:latest
